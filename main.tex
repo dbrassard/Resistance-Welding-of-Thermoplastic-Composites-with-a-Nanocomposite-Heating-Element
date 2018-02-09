@@ -1,0 +1,211 @@
+%\documentclass[5p,times]{elsarticle}
+\documentclass[11pt,review,times]{elsarticle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Loading packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{placeins} % For /Floatbarrier
+\usepackage{array,booktabs}
+\usepackage{url} % For better linebreaks of URLs
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{upgreek}
+\usepackage[inline]{enumitem}
+%\usepackage{mathrsfs}
+%\usepackage{wasysym}
+
+
+
+% Packages for tikz
+\usepackage{tikz}
+\usepackage{pgf}
+\usetikzlibrary{3d}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows}
+\usetikzlibrary{external}
+\tikzexternalize[prefix=TikzPictures/]
+
+\biboptions{sort&compress}
+
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}} % Define a column style "M" (verticaly centered by m) and horizontaly
+
+% Hyperref and parameters of PDF
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+	pdftitle = {Heat Dissipation in an Electrically Conductive Nanocomposite},
+    pdfauthor = {David Brassard, Martine Dubé, Jason R Tavares},
+	pdfkeywords={carbon nanotube, thermal conductivity, polymer, nanocomposite, heating element, Joule heating, electrical conductivity, Finite element analysis},
+	pdfsubject={Heat Dissipation in an Electrically Conductive Nanocomposite}
+}
+
+\graphicspath{{Figures/}}	% Root directory of the pictures 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Main document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\hyphenation{COMSOL na-no-com-po-si-te na-no-com-po-si-tes}
+
+
+\title{Resistive welding of thermoplastic composites with a nanocomposite heating element}
+\journal{TBD}
+
+\author[polymtl,crepec]{David~Brassard}
+\ead{david.brassard@polymtl.com}
+\author[ets,crepec]{Martine~Dubé}
+\ead{martine.dube@etsmtl.ca}
+\author[polymtl,crepec]{Jason~R.~Tavares\corref{cor1}}
+\ead{jason.tavares@polymtl.ca}
+
+\cortext[cor1]{Corresponding author}
+
+\address[polymtl]{Department of Chemical Engineering, Polytechnique Montréal, P.O. Box 6079 Station Centre-Ville, Montréal, QC, H3C 3A7, Canada}
+\address[ets]{Department of Mechanical Engineering, École de technologie supérieure, 1100 Notre-Dame Street West, Montréal, Québec, Canada, H3C 1K3}
+\address[crepec]{Research Center for High Performance Polymer and Composite Systems (CREPEC), Polytechnique Montréal, P.O. Box 6079 Station Centre-Ville, Montréal, QC, H3C 3A7, Canada}
+
+\begin{abstract}
+Text text text
+\end{abstract}
+
+\begin{keyword}
+
+\end{keyword}
+
+\maketitle
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+							\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Composite materials and weight reduction of structures in transport \cite{FordMotorLLC2018}, aeronautic, aerospace... (ADD REFERENCES)
+
+Demand for thermoplastic composites driven by their higher impact resistance, shorter cycle times, recyclability and higher environmental resistance \cite{cogswell1992}
+
+Resistance welding of composite as a cost/weight effective solution for joining thermoplastic composites
+\begin{enumerate}
+	\item Introduction in the eighties with carbon fibre heating elements \cite{houghton1984bonding} and \cite{Eveno1988} 
+	\item Evaluation of the welding parameters \cite{Ageorges2000a}
+	\item Issues with carbon fiber heating elements \cite{McKnight1997}
+	\item Stainless steel heating elements as an alternative (SS mesh)\cite{Hou1999a}, (parameters investigation)\cite{Dube2007}, (mesh size effect)\cite{Dube2012a}, (process optimization through simulation)\cite{Talbot2013}, (parameters investigation)\cite{Shi2014} and (continuous process)\cite{Shi2015a} 
+	\item Poor adhesion to the mesh
+\end{enumerate}
+
+Traditionnal resistance welding is a well established process but we believe that it is interesting to investigate alternative heating elements 
+
+Also, there is a need in the market for alternative welding process to match varied applications requirements. \cite{CompositeWorldSloan2018}
+
+Conductive nanocomposite as poor conductor -> good resistance
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+							\section{Methodology}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Simulations}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Testing the hypothesis with COMSOL
+
+Details of the simulation parameters
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Materials}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+UD CF/PEEK composite panels
+\begin{itemize}
+	\item Hot pressed
+	\begin{itemize}
+		\item Manufacturing parameters
+	\end{itemize}
+	\item Dimensions from ASTM D5868 - 01(2014)
+\end{itemize}
+
+Nanocomposite
+\begin{itemize}
+	\item Polyetherimide (PEI)
+	\begin{itemize}
+		\item Sigma Aldrich CAS 61128-46-9 melt index -> 18 g/10 min (337 degC/6.6kg) 
+	\end{itemize}
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Experiments}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Experiments aiming to mimic conventionnal resistive welding parameters and durations (high power levels, short welding times)
+
+Presentation of the welding jig
+\begin{itemize}
+	\item Computer controlled setup with LabView
+	\item Magna-Power XR160-60/208+LXI DC power source
+	\item Alumina-Silicate Ceramic insulation blocks
+	\item Copper electrodes
+\end{itemize}
+
+Operating parameters
+\begin{itemize}
+	\item Constant pressure on the weld
+	\item Constant power modulation
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+							\section{Results and discussion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Simulations results}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Results confirming that is is a viable process and that we can reach temperatures appropriate for welding of TPC
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Experimental results}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Properties of the nanocomposite used as heating element
+
+Results of temperature monitoring
+
+SLS results (results at \SI{350}{\kilo\watt\per\square\metre} with short welding times)
+
+Fractography results
+
+FTIR results?
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+							\section{Conclusion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+							\section{Acknowledgements}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+							\section*{References}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{model4-names}
+\bibliography{Doctorat}
+%\pagebreak
+
+%\section{Figures}
+%\FloatBarrier
+
+\end{document}
