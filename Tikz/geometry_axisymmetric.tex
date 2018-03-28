@@ -1,0 +1,84 @@
+%\shorthandoff{:!}
+
+\begin{tikzpicture}[scale=0.038]
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%	 Def géométrie  %%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+\def \rayonun{6}
+\def \rayondeux{65}
+\def \vspace{2}
+\def \lignecote{8}
+\def \hauteur{80}
+\def \anglearc{111.5}
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%	   Def style    %%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+\def \heavy{0.045cm}
+\def \light{0.025cm}
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%	    Calculs     %%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+\pgfmathsetmacro{\sinangle}{sin(\anglearc)}
+\pgfmathsetmacro{\cosangle}{cos(\anglearc)}
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%	    Dessin      %%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+\draw[line width=\heavy] (\rayonun,0) rectangle (\rayondeux,\hauteur);
+\draw[line width=\heavy, fill=gray] (0,0) rectangle (\rayonun,\hauteur);
+%\draw[line width=\heavy] \draw (0,0,0) arc (0:45:1) ;
+
+% On se positionne sur un plan à une hauteur de 80 (\hauteur)
+\begin{scope}[canvas is zx plane at y=\hauteur]
+	% On dessine le quart de cercle extérieur
+	\draw[line width=\heavy] (0,\rayondeux) arc (90:180:\rayondeux) -- (0,0);
+	% On dessine le quart de cercle du nanotube
+	\draw[line width=\heavy, fill=gray] (0,0) -- (0,\rayonun) arc (90:180:\rayonun) -- (0,0);
+\end{scope}
+
+% On se positionne sur un plan à une hauteur de 0
+\begin{scope}[canvas is zx plane at y=0]
+	% On trace le cercle jusqu'à l'angle \anglearc trouvé itérativement
+	\draw[line width=\heavy] (0,\rayondeux) arc (90:\anglearc:\rayondeux);
+\end{scope}
+
+% Ligne du côté du cylindre
+\draw[line width=\heavy] (\sinangle*\rayondeux,0,\cosangle*\rayondeux) -- +(0,\hauteur,0);
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%	    Cotation    %%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+% On dessine la ligne de cote pour la nanotube
+\draw[line width=\light] (0,-\vspace) -- + (0,-\lignecote);
+\draw[line width=\light] (\rayonun,-\vspace) -- + (0,-\lignecote);
+\draw[<->,line width=\heavy] (0,-\vspace-0.5*\lignecote) -- + (\rayonun,0);
+
+\node[anchor=north] (A) at (0.5*\rayonun , -\vspace-\lignecote) {\footnotesize \rayonun \ nm};
+
+% On dessine la ligne de cote pour la hauteur
+\draw[line width=\light] (-\vspace,0) -- + (-\lignecote,0);
+\draw[line width=\light] (-\vspace,\hauteur) -- + (-\lignecote,0);
+\draw[<->,line width=\heavy] (-\vspace-0.5*\lignecote,0) -- + (0,\hauteur);
+
+\node[anchor=south, rotate=90] (A) at (-\vspace-\lignecote,0.5*\hauteur ) {\footnotesize \hauteur \ nm};
+
+% On dessine la ligne de cote pour le diamètre du modèle
+\draw[line width=\light] (0,\hauteur+\vspace) -- + (0,\lignecote);
+\draw[line width=\light] (\rayondeux,\hauteur+\vspace) -- + (0,\lignecote);
+\draw[<->,line width=\heavy] (0,\hauteur+\vspace+0.5*\lignecote) -- + (\rayondeux,0);
+
+\node[anchor=south] (A) at (0.5*\rayondeux , \hauteur+\vspace+\lignecote) {\footnotesize \rayondeux \ nm};
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{tikzpicture}
+
+%\shorthandon{:!}

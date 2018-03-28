@@ -1,0 +1,221 @@
+%\shorthandoff{:!}
+
+\begin{tikzpicture}[scale=0.02,
+								x  = {(0.99788,0.065079)},
+                    		y  = {(0.021693,1.38835)},
+                    		z  = {(-0.824336,0.130158)},]
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%	 Def géométrie  %%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+\def \dia{6} %La variable dia contient en fait le rayon des tubes au lieu du diamètre
+\def \epaisseur{75}
+\def \hauteur{90}
+\def \longueur{200}
+
+\def \angle{88.0}
+
+\def \vspace{4}
+\def \lignecote{10}
+\def \anglearc{111.5}
+
+\def \colplan{red!7}
+\def \coltube{gray!50}
+
+\def \dotsize{60pt}
+
+\coordinate (A) at (0,0,0);
+\coordinate (B) at (0,0,\epaisseur);
+\coordinate (C) at (0,\hauteur,\epaisseur);
+\coordinate (D) at (0,\hauteur,0);
+\coordinate (E) at (-\longueur,0,0);
+\coordinate (F) at (-\longueur,0,\epaisseur);
+\coordinate (G) at (-\longueur,\hauteur,\epaisseur);
+\coordinate (H) at (-\longueur,\hauteur,0);
+
+\coordinate (W) at (0,0,0.75*\epaisseur);
+\coordinate (X) at (0,\hauteur,0.75*\epaisseur);
+\coordinate (Y) at (-\longueur,\hauteur,0.75*\epaisseur);
+\coordinate (Z) at (-\longueur,0,0.75*\epaisseur);
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%	   Def style    %%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+\def \heavy{0.045cm}
+\def \light{0.025cm}
+\def \reallyheavy{0.06cm}
+
+%Modification du monde de transparence pour mélanger les couleurs superposées
+\begin{scope}[blend mode=multiply]
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%	    Calculs     %%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+\pgfmathsetmacro{\sinangle}{sin(\anglearc)}
+\pgfmathsetmacro{\cosangle}{cos(\anglearc)}
+
+\pgfmathsetmacro{\sinangledeux}{sin(\angle)}
+\pgfmathsetmacro{\cosangledeux}{cos(\angle)}
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%	 Dessin du cube %%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+\draw[line width=\heavy, line join=round] (A) -- (B) -- (C) --(D) -- cycle;
+\draw[line width=\heavy, line join=round] (E) -- (F) -- (G) --(H) -- cycle;
+\draw[line width=\heavy, line join=round] (D) -- (H);
+\draw[line width=\heavy, line join=round] (G) -- (C);
+\draw[line width=\heavy, line join=round] (A) -- (E);
+\draw[line width=\heavy, line join=round] (F) -- (B);
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Dessin du nanotube du centre %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Trouver les distances projetées en x et y pour un vecteur unitaire pour chaque axe
+\path (1,0,0);
+\pgfgetlastxy{\cylxx}{\cylxy}
+\path (0,1,0);
+\pgfgetlastxy{\cylyx}{\cylyy}
+\path (0,0,1);
+\pgfgetlastxy{\cylzx}{\cylzy}
+
+%Calculs
+\pgfmathsetmacro{\cylt}{(\cylzy * \cylyx - \cylzx * \cylyy)/ (\cylzy * \cylxx - \cylzx * \cylxy)}
+\pgfmathsetmacro{\ang}{atan(\cylt)}
+\pgfmathsetmacro{\ct}{1/sqrt(1 + (\cylt)^2)}
+\pgfmathsetmacro{\st}{\cylt * \ct}
+
+%\node[anchor=north] (A) at (0,-30,0) {\large xx \cylxx};
+%\node[anchor=north] (A) at (0,-40,0) {\large xy \cylxy};
+%\node[anchor=north] (A) at (0,-50,0) {\large yx \cylyx};
+%\node[anchor=north] (A) at (0,-60,0) {\large yy \cylyy};
+%\node[anchor=north] (A) at (0,-70,0) {\large zx \cylzx};
+%\node[anchor=north] (A) at (0,-80,0) {\large zy \cylzy};
+%\node[anchor=north] (A) at (0,-90,0) {\large \cylt};
+%\node[anchor=north] (A) at (0,-100,0) {\large \ang};
+%\node[anchor=north] (A) at (0,-110,0) {\large \ct};
+%\node[anchor=north] (A) at (0,-120,0) {\large \st};
+
+%\draw[line width=0.45, line join=round] (A) -- (H);
+
+%Surface extérieure du cylindre
+\fill[\coltube] (-0.5*\longueur+\dia*\ct,0.5*\hauteur+\dia*\st,\epaisseur) -> ++(0,0,-\epaisseur) arc[start angle=\ang,delta angle=180,radius=\dia] -- ++(0,0,\epaisseur) arc[start angle=\ang+180,delta angle=-180,radius=\dia];
+
+%Lignes des côtés
+\begin{scope}[every path/.style={line width=\heavy}]
+
+	%Cercle du devant
+	\draw[fill=\coltube] (-0.5*\longueur,0.5*\hauteur,0) circle[radius=\dia];
+
+	%Ligne des côtés
+	\draw[dashed] (-0.5*\longueur+\dia*\ct,0.5*\hauteur+\dia*\st,0) -- ++(0,0,\epaisseur);
+	\draw[dashed] (-0.5*\longueur-\dia*\ct,0.5*\hauteur-\dia*\st,0) -- ++(0,0,\epaisseur);
+
+	%Cercle arrière
+	\draw[dashed] (-0.5*\longueur+\dia*\ct,0.5*\hauteur+\dia*\st,\epaisseur) arc[start angle=\ang,delta angle=180,radius=\dia];
+	\draw[dashed] (-0.5*\longueur+\dia*\ct,0.5*\hauteur+\dia*\st,\epaisseur) arc[start angle=\ang,delta angle=-180,radius=\dia];
+	
+\end{scope}
+
+%\draw (-0.5*\longueur,.5*\hauteur,0) -- (-0.5*\longueur,.5*\hauteur,\epaisseur);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Dessin du nanotube de droite %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{scope}[canvas is zy plane at x=0]
+	\draw[line width=\heavy, dashed] (0.25*\epaisseur,0.5*\hauteur-2*\dia) ++(\angle:\dia) arc[start angle=\angle,delta angle=-180,radius=\dia];
+	\draw[line width=\heavy, dashed, fill=\coltube] (0.25*\epaisseur,0.5*\hauteur-2*\dia) ++(\angle:\dia) arc[start angle=\angle,delta angle=180,radius=\dia];
+\end{scope}
+
+
+\begin{scope}[canvas is zy plane at x=-0.55*\longueur]
+	\draw[line width=\heavy, dashed, fill=\coltube] (0.25*\epaisseur,0.5*\hauteur-2*\dia) ++(\angle:\dia) arc[start angle=\angle,delta angle=-180,radius=\dia];
+	\draw[line width=\heavy, dashed] (0.25*\epaisseur,0.5*\hauteur-2*\dia) ++(\angle:\dia) arc[start angle=\angle,delta angle=180,radius=\dia];
+\end{scope}
+
+
+\draw[line width=\heavy, dashed] (0,0.5*\hauteur-2*\dia+\dia*\sinangledeux,0.25*\epaisseur+\dia*\cosangledeux) -- ++(-0.55*\longueur,0,0);	
+
+\draw[line width=\heavy, dashed] (0,0.5*\hauteur-2*\dia-\dia*\sinangledeux,0.25*\epaisseur-\dia*\cosangledeux) -- ++(-0.55*\longueur,0,0);	
+
+\fill[\coltube] (0,0.5*\hauteur-2*\dia+\dia*\sinangledeux,0.25*\epaisseur+\dia*\cosangledeux) -- ++(-0.55*\longueur,0,0) -- ++(0,-2*\dia*\sinangledeux,-2*\dia*\cosangledeux)-- ++(0.55*\longueur,0,0) -- cycle;
+
+%\draw (0,0.5*\hauteur-\dia,\epaisseur*0.25) -- ++(-0.55*\longueur,0,0);
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Dessin du nanotube de gauche %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{scope}[canvas is zy plane at x=-\longueur]
+	\draw[line width=\heavy, fill=\coltube] (0.75*\epaisseur,0.5*\hauteur+2*\dia) ++(\angle:\dia) arc[start angle=\angle,delta angle=-180,radius=\dia];
+	\draw[line width=\heavy] (0.75*\epaisseur,0.5*\hauteur+2*\dia) ++(\angle:\dia) arc[start angle=\angle,delta angle=180,radius=\dia];
+\end{scope}
+
+\begin{scope}[canvas is zy plane at x=-0.45*\longueur]
+	\draw[line width=\heavy, dashed] (0.75*\epaisseur,0.5*\hauteur+2*\dia) ++(\angle:\dia) arc[start angle=\angle,delta angle=-180,radius=\dia];
+	\draw[line width=\heavy, dashed, fill=\coltube] (0.75*\epaisseur,0.5*\hauteur+2*\dia) ++(\angle:\dia) arc[start angle=\angle,delta angle=180,radius=\dia];
+\end{scope}
+
+\draw[line width=\heavy, dashed] (-0.45*\longueur,0.5*\hauteur+2*\dia+\dia*\sinangledeux,0.75*\epaisseur+\dia*\cosangledeux) -- ++(-0.55*\longueur,0,0);	
+
+\draw[line width=\heavy, dashed] (-0.45*\longueur,0.5*\hauteur+2*\dia-\dia*\sinangledeux,0.75*\epaisseur-\dia*\cosangledeux) -- ++(-0.55*\longueur,0,0);	
+
+\fill[\coltube] (-0.45*\longueur,0.5*\hauteur+2*\dia+\dia*\sinangledeux,0.75*\epaisseur+\dia*\cosangledeux) -- ++(-0.55*\longueur,0,0) -- ++(0,-2*\dia*\sinangledeux,-2*\dia*\cosangledeux)-- ++(0.55*\longueur,0,0) -- cycle;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Dessin des points de contact %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\fill [black] (-0.5*\longueur,0.5*\hauteur-\dia,0.25*\epaisseur) circle (\dotsize);
+\fill [black] (-0.5*\longueur,0.5*\hauteur+\dia,0.75*\epaisseur) circle (\dotsize);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Dessin du plan de decoupe    %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\draw[line width=\reallyheavy, line join=round, fill=\colplan] (W) -- (X) -- (Y) --(Z) -- cycle;
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%	    Cotation    %%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+%Calcul des angles de rotation pour les cotes
+\pgfmathsetmacro{\rotx}{ atan( \cylxy / \cylxx) }
+\pgfmathsetmacro{\roty}{ atan( \cylyx / \cylyy) }
+\pgfmathsetmacro{\rotz}{ atan( \cylzy / \cylzx) }
+
+% On dessine la ligne de cote pour la longueur
+\draw[line width=\light] (-\longueur,\vspace+\hauteur,\epaisseur) -- + (0,\lignecote,0);
+\draw[line width=\light] (0,\vspace+\hauteur,\epaisseur) -- + (0,\lignecote,0);
+\draw[<->,line width=\heavy] (-\longueur,+\vspace+\hauteur+0.5*\lignecote,\epaisseur) -- + (\longueur,0,0);
+
+\node[anchor=south, rotate=\rotx] (C) at (-0.5*\longueur,\hauteur+\vspace+\lignecote,\epaisseur ) {\footnotesize \longueur \ nm};
+
+% On dessine la ligne de cote pour la hauteur
+\draw[line width=\light] (-\longueur-\vspace,0,\epaisseur) -- + (-\lignecote,0,0);
+\draw[line width=\light] (-\longueur-\vspace,\hauteur,\epaisseur) -- + (-\lignecote,0);
+\draw[<->,line width=\heavy] (-\longueur-\vspace-0.5*\lignecote,0,\epaisseur) -- + (0,\hauteur);
+
+\node[anchor=south, rotate=90-\roty] (C) at (-\longueur-\vspace-\lignecote,0.5*\hauteur,\epaisseur ) {\footnotesize \hauteur \ nm};
+
+% On dessine la ligne de cote pour l'épaisseur
+\draw[line width=\light] (-\longueur,-\vspace,\epaisseur) -- + (0,-\lignecote,0);
+\draw[line width=\light] (-\longueur,-\vspace,0) -- + (0,-\lignecote,0);
+\draw[<->,line width=\heavy] (-\longueur,-\vspace-0.5*\lignecote,\epaisseur) -- + (0,0,-\epaisseur);
+
+\node[anchor=north, rotate=\rotz] (C) at (-\longueur,-\vspace-\lignecote,0.5*\epaisseur ) {\footnotesize \epaisseur \ nm};
+
+\end{scope}
+
+\end{tikzpicture}
+
+%\shorthandon{:!}

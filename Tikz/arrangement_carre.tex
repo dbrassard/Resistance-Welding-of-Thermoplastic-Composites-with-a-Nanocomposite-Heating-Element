@@ -1,0 +1,37 @@
+\begin{tikzpicture}[scale=1.4]
+
+\def \l{1}
+\def \r{0.225}
+\def \vspace{0.32}
+\def \lignecote{0.5}
+
+\def \heavy{0.05cm}
+\def \light{0.03cm}
+
+\draw[line width=\heavy] (0,0) rectangle (\l,\l);
+
+\draw[line width=\heavy] (0,0) circle (\r);
+\draw[line width=\heavy] (\l,0) circle (\r);
+\draw[line width=\heavy] (0,\l) circle (\r);
+\draw[line width=\heavy] (\l,\l) circle (\r);
+
+\draw[line width=\light] (0,-\vspace) -- + (0,-\lignecote);
+\draw[line width=\light] (\l,-\vspace) -- + (0,-\lignecote);
+\draw[<->,line width=\heavy] (0,-\vspace-0.5*\lignecote) -- + (\l,0);
+
+\node (A) at (0.5*\l , -\vspace-\lignecote) {\small $2L$};
+
+\draw[line width=\light] (-\vspace,0) -- + (-\lignecote,0);
+\draw[line width=\light] (-\vspace,\l) -- + (-\lignecote,0);
+\draw[<->,line width=\heavy] (-\vspace-0.5*\lignecote,0) -- + (0,\l);
+
+\node (A) at (-\vspace-\lignecote,0.5*\l ) {\small $2L$};
+
+\draw[line width=\light] (\l+0.75*\vspace,\l-\r) -- + (\lignecote,0);
+\draw[line width=\light] (\l+0.75*\vspace,\l+\r) -- + (\lignecote,0);
+\draw[<->,line width=\heavy] (\l+\vspace+0.375*\lignecote,\l-\r) -- + (0,2*\r);
+
+\node (A) at (\l+\vspace+0.25*\lignecote+\vspace,\l ) {\small $d$};
+
+
+\end{tikzpicture}
