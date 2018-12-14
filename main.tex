@@ -82,12 +82,11 @@
 
 \begin{abstract}
 
-This work demonstrates, with a multistep approach, that a PEI/MWCNT-based nanocomposite heating element is a viable alternative to stainless steel meshes for resistance welding of high performance thermoplastic composites. 
+This work demonstrates, with a multistep approach, a PEI/MWCNT-based nanocomposite heating element for resistance welding of high performance thermoplastic composites. 
 Simple continuum micromechanic simulations of the nanocomposite predicted uniform temperature at the constituent scale. 
 A test with a PEEK/MWCNT nanocomposite heating filament then demonstrated temperature uniformity at the macroscopic scale. 
 At the coupon scale, single lap shear specimens with CF/PEEK adherents were welded with the PEI/MWCNT nanocomposite heating element. 
 Cohesive failure within the nanocomposite were observed and FTIR tests confirmed the absence of important thermal degradation. 
-This nanocomposite heating element offers simplified handling as an intermediate PEI layers is no longer required. 
 
 \end{abstract}
 
@@ -118,16 +117,19 @@ The first heating elements that were used for the resistance welding process wer
 Poor weld reproducibility and problematic electrical connections between the electrodes and the carbon fibres caused scaling issues \cite{McKnight1997}. 
 These shortcomings led to the use of stainless steel (SS) mesh heating elements that increased the consistency of the process \cite{Hou1999a}.
 
-Apparent shear strength (ASS) from single lap shear (SLS) tests are commonly reported to evaluate the performance of welding parameters. 
-Failure modes in SLS tests, for samples welded with SS heating element under suboptimal conditions, are adhesive failure (ADH) between the mesh and the polymer or between the polymer and the adherents. 
+Apparent shear strength (ASS) from single lap shear (SLS) tests and failure modes are commonly reported to evaluate the performance of welding parameters. 
+For samples welded with SS heating element under suboptimal conditions, adhesive failure (ADH) between the mesh and the polymer or between the polymer and the adherents are obtained. 
 These failures can be accompanied with tearing of the mesh. 
 Under good welding conditions, light-fiber-tear failure (LFT), often accompanied by mesh tearing, is observed \cite{Shi2014}. 
-Under cyclic loading, due to low interfacial bonding, SS meshes contribute to crack initiation and propagation from peel stress at the edge of laminates \cite{Dube2008b,Dube2009a}. 
-Poor bonding between the polymer and the SS mesh is a well-documented limitation of traditional resistance welding \cite{Dube2007,Dube2012a,Dube2009a,Shi2014,Shi2015a}. 
-An increase in the ratio of the mesh open area to its wire diameter of the mesh, to a certain extent, improves ASS. 
+Failure modes and ASS are dependant on the fibre orientation within the adherent \cite{Shi2013a}. 
+For stiffer unidirectional CF/PEEK laminates, damage occurs in the heating element with little to no damage to the adherents \cite{Dube2015}. 
+The variations in the failure modes indicate that poor adhesive bonding between the polymer and the SS mesh \cite{Dube2007,Dube2012a,Dube2009a,Shi2014,Shi2015a} can be a limiting factor under certain circumstances. 
+An increase in the ratio of the mesh open area to its wire diameter, to a certain extent, improves ASS. 
 Taking that optimization to its maximum leads to a weld interface without any wire similar to compression moulding \cite{Dube2012a}. 
 
-A conductive polymer-based nanocomposite heating element, compatible with the adherents, could replace the SS mesh and improve the interfacial bonding of the joint. 
+Some concerns where expressed regarding the additional weight and long term galvanic corrosion resistance of SS meshes \cite{Stavrov2005a}, players from the space industry are looking at possible alternatives.  
+The target would be to replace the SS meshes with a lower density materials that is not affected by corrosion. 
+A conductive polymer-based nanocomposite heating element, compatible with the adherents, could serve as that alternative and improve the interfacial bonding of the joint. 
 Such nanocomposites are formed by dispersing conductive nanoparticles (typically metal or carbon) into a polymer matrix. 
 The electrical properties of nanocomposites depend, among other things, on the intrinsic properties of the nanoparticles, their mass fraction, surface modifications, and the mixing method employed. 
 This was illustrated by Bauhofer et al., who showed that the same kinds of particles can produce nanocomposites with wildly different properties \cite{Bauhofer2009}. 
@@ -136,7 +138,7 @@ For applications such as resistance welding, we seek conductivities sufficiently
 For traditional resistance welding of high performance TPC parts made of carbon fibre and poly(ether ether ketone) (CF/PEEK), polyetherimide (PEI) is commonly used to provide a resin-rich region at the weld interface. 
 The miscibility of PEI in PEEK \cite{Crevecoeur1991} also improves the bonding between the adherents to attain good mechanical performances. 
 By using PEI, for the matrix of the nanocomposite, we hypothesize that we could take advantage of that miscibility and obtain a nanocomposite heating element suitable for resistance welding of CF/PEEK laminates. 
-This novel heating element would be almost entirely miscible within the matrix of the composite and would not leave foreign objects in the weld. 
+This novel heating element would be almost entirely miscible within the matrix of the composite. 
 
 Herein, we propose a conductive PEI-based polymer nanocomposite to be used as a heating element for resistance welding of high performance TPC. 
 The core phenomena is validated with continuum micromechanic simulations and joule heating of a nanocomposite filament. 
@@ -613,14 +615,14 @@ The authors also thank Prof. G.S. Patience for the use of the thermal imaging ca
 \resizebox{125mm}{!}{
 \begin{tabular}{@{}lllrlrl@{}}
 \toprule
-Property    					&                   &        												& PEEK & 																& MWCNT 			& \\ \midrule
-Density						& $\rho$            & [\si{\kilo\gram\per\cubic\metre}]  			& 1300 & \cite{cogswell1992, Giants1994}					& 2000 			& \cite{Lehman2011} \\
-Specific heat				& $C_p$             & [\si{\joule\per\kilo\gram\per\celsius}] 	& 1950 & \cite{cogswell1992}									& 600 				& \cite{Mizel99} \\
-Thermal conductivity		& $k$               & [\si{\watt\per\metre\per\celsius}]  			& 0.25 & \cite{cogswell1992}									& 3000				& \cite{Mizel99,Berber2000} \\
-Electrical conductivity	& $\sigma$          & [\si{\siemens\per\metre}]    					& \num{2e-14} & \cite{Giants1994,Bangarusampath2009}		& \num{8.3e5}	& \cite{Ebbesen1996} \\
-Relative permittivity		& $\upvarepsilon_r$ & [ \sep ]												& 3.1  &	\cite{victrexpeek, Giants1994}						& 12.5     		& \cite{Katsounaros2011} \\ \bottomrule
+Property    					&                   &        												& PEI				&							& MWCNT 			& \\ \midrule
+Density						& $\rho$            & [\si{\kilo\gram\per\cubic\metre}]  			& 1270 			&							& 2000 			& \cite{Lehman2011} \\
+Specific heat				& $C_p$             & [\si{\joule\per\kilo\gram\per\celsius}] 	& 1248				& \cite{Ageorges2001}	& 600 				& \cite{Mizel99} \\
+Thermal conductivity		& $k$               & [\si{\watt\per\metre\per\celsius}]  			& 0.22				&							& 3000				& \cite{Mizel99,Berber2000} \\
+Electrical conductivity	& $\sigma$          & [\si{\siemens\per\metre}]    					& \num{1e-15} 	&							& \num{8.3e5}	& \cite{Ebbesen1996} \\
+Relative permittivity		& $\upvarepsilon_r$ & [ \sep ]												& 3.15  			&							& 12.5     		& \cite{Katsounaros2011} \\ \bottomrule
 \end{tabular}}
-\caption{Material properties}
+\caption{Material properties, unless noted, the properties for PEI are taken from SABIC's technical documentation}
 \label{tab:material_properties}
 \end{table}
 
