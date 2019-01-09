@@ -22,6 +22,7 @@
 *.mtc1
 *.out
 main.pdf
+Supplementary_Information.pdf
 *.synctex.gz
 *.fdb_latexmk
 *.fls
