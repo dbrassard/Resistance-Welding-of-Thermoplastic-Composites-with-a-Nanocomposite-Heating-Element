@@ -1,10 +1,12 @@
-\usetikzlibrary{arrows.meta,shapes,positioning,shadows,trees,decorations.pathmorphing}
+%\usetikzlibrary{arrows.meta,shapes,positioning,shadows,trees,decorations.pathmorphing}
 
 \begin{tikzpicture}[scale=0.125]
 
 %Couleurs
 \def \colceramique{black!10}
 \def \colcomposite{black!40}
+
+\def \legend{6}
 
 %Définition des dimensions du joint soudé
 \def \overlap{12.7}
@@ -56,11 +58,25 @@
 \draw[black,decoration={random steps, amplitude=4, segment length=10},fill=\colceramique] 
 (0,\epnanocomposite+\epcomposite) -- ++(\longueur,0) decorate{-- ++(0,\epceramique)} -- ++(-\longueur,0) -- cycle;
 
-%Identification des céramiques
-\draw (-\longueur+1.1*\overlap,-0.65*\epceramique) node [right, align=left]{ \large Ceramic insulator};
-
 %Position du thermocouple
 \draw[fill=red] (0.5*\overlap,\epnanocomposite+\epcomposite) circle (0.75) node [above right]{\Large T1 and T2};
 
+%Legend
+\begin{scope}[shift={(\overlap+\longueur-0.5*\legend,\gapfigure+0.5*\legend)}]
+	\begin{scope}[shift={(0,0)}]
+		\draw [black, fill=\colceramique] (0,0) rectangle ++(\legend,-\legend);
+		\draw (1.5*\legend,-0.5*\legend) node[right]{{\textbf{Ceramic insulators}}} ;
+	\end{scope}
+
+	\begin{scope}[shift={(0,-1.5*\legend)}]
+		\draw [black, fill=\colcomposite] (0,0) rectangle ++(\legend,-\legend);
+		\draw (1.5*\legend,-0.5*\legend) node[right]{{\textbf{Adherents}}} ;
+	\end{scope}
+
+	\begin{scope}[shift={(0,-3*\legend)}]
+		\draw [black, fill=black] (0,0) rectangle ++(\legend,-\legend);
+		\draw (1.5*\legend,-0.5*\legend) node[right]{{\textbf{Nanocomposite}}} ;
+	\end{scope}
+\end{scope}
 
 \end{tikzpicture}
